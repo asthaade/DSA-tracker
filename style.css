@@ -1,0 +1,396 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --bg-color-dark: #1a1c2c;
+    --primary-color-dark: #24273a;
+    --secondary-color-dark: #363a4f;
+    --font-color-dark: #cad3f5;
+    --accent-color-1: #8aadf4; /* Blue */
+    --accent-color-2: #eed49f; /* Yellow */
+    --green-color: #a6da95;
+    --pink-color: #f5bde6;
+    --border-color-dark: #494d64;
+
+    --bg-color-light: #eff1f5;
+    --primary-color-light: #ffffff;
+    --secondary-color-light: #e6e9ef;
+    --font-color-light: #4c4f69;
+    --border-color-light: #dce0e8;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color-dark);
+    color: var(--font-color-dark);
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top for longer content */
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--font-color-light);
+}
+
+/* --- Main Container & Header --- */
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--primary-color-dark);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-color-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.light-mode .container {
+    background-color: var(--primary-color-light);
+    border-color: var(--border-color-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color-dark);
+    padding-bottom: 1.5rem;
+    transition: border-color 0.3s;
+}
+
+body.light-mode header {
+    border-color: var(--border-color-light);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--font-color-dark);
+}
+
+body.light-mode header h1 {
+    color: var(--font-color-light);
+}
+
+header p {
+    font-size: 1rem;
+    color: #a0a0a0;
+}
+
+body.light-mode header p {
+    color: #666;
+}
+
+/* --- Theme Switcher --- */
+.theme-switcher button {
+    background: var(--secondary-color-dark);
+    border: 1px solid var(--border-color-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.theme-switcher button:hover {
+    transform: scale(1.1);
+}
+
+body.light-mode .theme-switcher button {
+    background: var(--secondary-color-light);
+    border: 1px solid var(--border-color-light);
+}
+
+.theme-switcher .dark-icon,
+.theme-switcher .light-icon {
+    font-size: 1.5rem;
+}
+
+.theme-switcher .dark-icon {
+    display: none;
+}
+
+body.light-mode .theme-switcher .dark-icon {
+    display: block;
+}
+
+body.light-mode .theme-switcher .light-icon {
+    display: none;
+}
+
+/* --- Coding Tip Section --- */
+.coding-tip {
+    background-color: var(--secondary-color-dark);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid var(--accent-color-2);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.light-mode .coding-tip {
+    background-color: var(--secondary-color-light);
+}
+
+.coding-tip .tip-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.coding-tip p {
+    margin: 0;
+    font-style: italic;
+    color: var(--accent-color-2);
+}
+
+body.light-mode .coding-tip p {
+    color: #6c584c; /* A darker yellow/brown for light mode */
+}
+
+
+/* --- Progress Bar --- */
+.progress-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: var(--secondary-color-dark);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+body.light-mode .progress-bar {
+    background-color: var(--secondary-color-light);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-color-1), var(--pink-color));
+    border-radius: 6px;
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- Phase Sections (Accordion) --- */
+.phase {
+    background-color: transparent;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color-dark);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.light-mode .phase {
+    border-color: var(--border-color-light);
+}
+
+.phase-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color-dark);
+    transition: background-color 0.2s ease;
+}
+
+.phase-header:hover {
+    background-color: #494d64;
+}
+
+body.light-mode .phase-header {
+    background-color: var(--secondary-color-light);
+}
+
+body.light-mode .phase-header:hover {
+    background-color: #dce0e8;
+}
+
+.phase-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.phase-header .arrow {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.phase-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    padding: 0 1.5rem;
+    background-color: var(--primary-color-dark);
+}
+
+body.light-mode .phase-content {
+    background-color: var(--primary-color-light);
+}
+
+.phase.open .phase-content {
+    padding: 1rem 1.5rem;
+}
+
+.phase.open .arrow {
+    transform: rotate(90deg);
+}
+
+/* --- Topic Items --- */
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topic-header {
+    padding: 1rem 0 0.5rem 0;
+    border-bottom: 1px solid var(--border-color-dark);
+    margin-bottom: 0.5rem;
+    transition: border-color 0.3s;
+}
+body.light-mode .topic-header {
+    border-color: var(--border-color-light);
+}
+.topic-header h3 {
+    margin: 0 0 0.25rem 0;
+    color: var(--green-color);
+    font-size: 1.1rem;
+}
+.topic-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    font-style: italic;
+}
+body.light-mode .topic-header p {
+    color: #666;
+}
+
+.topic-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--border-color-dark);
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    padding-left: 1rem;
+}
+
+.phase.open .topic-item {
+    animation-delay: calc(var(--i, 0) * 50ms);
+}
+
+body.light-mode .topic-item {
+    border-color: var(--border-color-light);
+}
+
+.topic-item:last-child {
+    border-bottom: none;
+}
+
+.topic-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.topic-item input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--font-color-dark);
+    border-radius: 6px;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.topic-item.checked-animation .custom-checkbox {
+    animation: pop 0.3s ease;
+}
+
+body.light-mode .custom-checkbox {
+    border-color: var(--font-color-light);
+}
+
+.custom-checkbox .checkmark {
+    display: none;
+    color: var(--primary-color-dark);
+    font-weight: bold;
+}
+
+.topic-item input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: var(--green-color);
+    border-color: var(--green-color);
+}
+
+.topic-item input[type="checkbox"]:checked + .custom-checkbox .checkmark {
+    display: block;
+}
+
+.topic-name {
+    flex-grow: 1;
+    transition: color 0.2s ease;
+}
+
+.topic-item input[type="checkbox"]:checked ~ .topic-name {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.topic-link {
+    text-decoration: none;
+    color: var(--accent-color-1);
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.topic-link:hover {
+    background-color: rgba(138, 173, 244, 0.2);
+}
