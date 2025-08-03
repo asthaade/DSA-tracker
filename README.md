@@ -2,7 +2,7 @@
 
 A sleek, interactive web application designed to help you track your progress as you prepare for Data Structures and Algorithms interviews. This tool provides a structured roadmap, breaking down the essential topics into manageable phases, from foundational concepts to advanced algorithms.
 
-![DSA Tracker]()
+[DSA Tracker](https://asthaade.github.io/DSA-tracker/)
 
 ---
 
